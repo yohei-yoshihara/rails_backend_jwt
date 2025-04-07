@@ -1,12 +1,12 @@
 class Api::V1::UsersController < ApplicationController
-  # POST /api/v1/signup 
+  # POST /api/v1/signup
   def create
     @user = User.new(user_params)
-        
+
     if @user.save
       token = generate_token(@user)
-      render json: { 
-        user: { id: @user.id, email: @user.email }, 
+      render json: {
+        user: { id: @user.id, email: @user.email },
         token: token 
       }, status: :created
     else
